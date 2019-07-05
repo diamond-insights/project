@@ -1,0 +1,28 @@
+{% extends 'bootstrap.html' %}
+{% block main %}
+<table class="table table-hover">
+    <tr>
+        <th>S/N</th>
+        
+        <th>FIRSTNAME</th>
+        <th>LASTNAME</th>
+        <th>SKILLS</th>
+    
+    </tr>
+    <tr>
+        {% for m in members: %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            
+            <td>{{ m.fname }}</td>
+            <td>{{ m.lname }}</td>
+        {% endfor %}
+        {% for i in membskills: %}
+            <td>{{ i.skill_name }}</td>
+        </tr>
+        {% endfor %}
+        
+    </tr>
+    
+    </table>
+{% endblock %}

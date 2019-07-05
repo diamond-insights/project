@@ -1,0 +1,29 @@
+{% extends 'bootstrap.html' %}
+{% block main %}
+<table class="table table-hover">
+    <a href="{{url_for('download_file', filename='image.jpg')}}">Click Here to download</a>
+<tr>
+    <th>S/N</th>
+    <th>IMAGE</th>
+    <th>FIRSTNAME</th>
+    <th>LASTNAME</th>
+    <th>EMAIL</th>
+
+</tr>
+<tr>
+    {% for m in members: %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td><img src="{{url_for('download_file', filename=m.photo)}}" alt="" width="120px"></td>
+        <td>{{ m.fname }}</td>
+        <td>{{ m.lname }}</td>
+        <td>{{ m.email }}</td>
+        <td><a href="{{url_for('userdetails', userid=m.profileid)}}">View Details</a></td>
+    </tr>
+    {% endfor %}
+</tr>
+
+</table>
+
+
+{% endblock %}

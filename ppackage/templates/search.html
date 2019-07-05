@@ -1,0 +1,32 @@
+{% extends 'bootstrap.html' %}
+
+{% block main %}
+    <input type="text" name="search" id="search" class="form-control" placeholder="Enter Email">
+    <button type="button" id="submit" class="btn btn-primary">Get Details</button>
+    <p></p>
+{% endblock %}
+{% block scriptss %}
+{{  super() }}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#submit').click(function(){
+            $.ajax({
+                url: "/searchre",
+                type: 'GET',
+                dataType:'json',
+                data:'fordata='+$('#search').val(),
+                success:function(msg){
+                    fullname= msg[0]+' '+ msg[1];
+                    $('p').html(fullname)
+                },
+                error:function(err){
+                    console.log(err)
+                }
+            })
+        });
+
+    });
+</script>
+
+{% endblock%}

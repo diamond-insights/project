@@ -1,0 +1,36 @@
+{% extends 'bootstrap.html' %}
+{% block main %}
+
+{% with message = get_flashed_messages() %}
+    {% if message: %}
+    {% for m in message %}
+    <div class="alert alert-danger">
+        {{ m }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+<h1>Login Here</h1>
+<form action="{{url_for('login')}}" method="POST" enctype="multipart/form-data">
+    
+<div>
+    {{ form.email.label}}
+</div>
+<div>
+    {{ form.email(class_="form-control",placeholder="Enter Email") }}
+</div>
+    {% if form.email.errors: %}
+    <div class="alert alert-danger">
+        {{ form.email.errors[0] }}
+    </div>
+    {% endif %}
+<div>
+    {{ form.pwd.label }}
+    {{ form.pwd(class_="form-control",placeholder="Enter Password")}}
+</div>
+<div>
+    {{ form.csrf_token }}
+    {{ form.submit(class_="btn btn-dark")}}
+</div>
+</form>
+{% endblock %}

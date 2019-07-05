@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            {% with message=get_flashed_messages() %}
+                {% if message: %}
+                    {% for m in message: %}
+                    {{ m[0] }}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('profile')}}" method="POST">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Enter Username" class="form-control" > 
+                <label>Password</label>
+                <input type="password" name="pwd" placeholder="Enter Password" class="form-control">
+                <input type="submit" name="Submit" class="btn btn-info">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

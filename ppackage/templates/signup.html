@@ -1,0 +1,54 @@
+{% extends 'bootstrap.html' %}
+
+{% block main %}
+
+<h2>Sign Up Here</h2>
+<form action="{{url_for('signup')}}" method="POST" enctype="multipart/form-data">
+    <div>
+        {{ form.photo.label}}
+    </div>
+    {% if form.photo.errors: %}
+    <div class="alert alert-danger">
+        {{ form.photo.errors[0] }}
+    </div>
+    {% endif %}
+    <div>
+        {{ form.photo(class_="btn btn-dark btn-md") }}
+    </div>
+    <div>
+        {{ form.firstname.label}}
+    </div>
+    <div>
+        {{ form.firstname(class_="form-control",placeholder="Enter Firstame") }}
+    </div>
+    <div>
+        {{ form.lastname.label}}
+    </div>
+    <div>
+        {{ form.lastname(class_="form-control",placeholder="Enter Lastame") }}
+    </div>
+    <div>
+        {{ form.email.label}}
+    </div>
+    <div>
+        {{ form.email(class_="form-control",placeholder="Enter Email") }}
+    </div>
+        {% if form.email.errors: %}
+        <div class="alert alert-danger">
+            <label>{{ form.email.errors[0] }}</label>
+        </div>
+        {% endif %}
+    <div>
+        {{ form.pwd.label }}
+        {{ form.pwd(class_="form-control",placeholder="Enter Password")}}
+    </div>
+    {% for s in allskills: %}
+    <input type="checkbox" name="skills" value="{{ s.id }}">
+    {{ s.skill_name }}
+    {% endfor %}
+    <div>
+        {{ form.csrf_token }}
+        {{ form.submit(class_="btn btn-dark")}}
+    </div>
+    </form>
+    {% endblock %}

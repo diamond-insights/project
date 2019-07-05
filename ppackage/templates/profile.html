@@ -1,0 +1,7 @@
+{% extends 'bootstrap.html' %}
+{% block main%}
+<div>
+     <h2>Welcome {{ session['name'] }}!!</h2>
+     <a href="{{ url_for('editprofile',profileid=id) }}">Edit Profile</a>
+</div>
+{% endblock%}
